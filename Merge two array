@@ -1,0 +1,40 @@
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        int n1 = sc.nextInt();
+        int[] arr1 = new int[n1];
+        for(int i = 0; i < n1; i++){
+            arr1[i] = sc.nextInt();
+        }
+        int n2 = sc.nextInt();
+        int[] arr2 = new int[n2];
+        for(int i = 0; i < n2; i++){
+            arr2[i] = sc.nextInt();
+        }
+        int[] merge = new int[n1 + n2];
+        int j = 0;
+        for(int i = 0; i < n1; i++){
+            merge[j] = arr1[i];
+            j++;
+        }
+        for(int i = 0; i < n2; i++){
+            merge[j] = arr2[i];
+            j++;
+        }
+        System.out.println("Merged Array:");
+        for(int i = 0; i < merge.length; i++){
+            System.out.print(merge[i] + " ");
+        }
+    }
+}
+//
+4
+10 20 50 70
+2
+90 30
+Merged array:
+10 20 30 50 70 90
