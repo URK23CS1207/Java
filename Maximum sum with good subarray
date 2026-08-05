@@ -1,0 +1,120 @@
+You are given an array A of length N and an integer k.
+
+It is given that a subarray from l to r is considered good, if the number of distinct elements in that subarray doesn't exceed k. Additionally, an empty subarray is also a good subarray and its sum is considered to be zero.
+
+Find the maximum sum of a good subarray.
+
+Input Format
+
+The first line contains an integer, N, denoting the number of elements in A.
+The next line contains an integer, k, denoting the limit on the distinct elements.
+Each line i of the N subsequent lines (where 0 ≤ i < N) contains an integer describing A[i].
+Constraints
+
+1 <= N <= 10^5
+1 <= k <= N
+-10^5 <= A[i] <= 10^5
+Output Format
+
+contains an integer
+
+Sample Input 0
+
+11
+2
+1
+2
+2
+3
+2
+3
+5
+1
+2
+1
+1
+Sample Output 0
+
+12
+Explanation 0
+
+Here, N = 11, k = 2 A = [1, 2, 2, 3, 2, 3, 5, 1, 2, 1, 1] We can select the subarray = [2, 2, 3, 2, 3] It is a good subarray because it contains at most k distinct elements. Its sum = 2+2+3+2+3 = 12 So, our answer is 12.
+
+Sample Input 1
+
+3
+1
+-1
+-2
+-3
+Sample Output 1
+
+0
+Explanation 1
+
+Here, N = 3, k = 1 A = [-1, -2, -3] It is optimal to choose empty subarray. So, our answer is 0.
+
+
+
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int k = sc.nextInt();
+
+        int[] arr = new int[n];
+
+        for(int i = 0; i < n; i++){
+            arr[i] = sc.nextInt();
+        }
+
+        long max = 0;
+
+        // Generate all subarrays
+        for(int i = 0; i < n; i++){
+
+            for(int j = i; j < n; j++){
+
+                int sum = 0;
+                int distinct = 0;
+
+                // Traverse current subarray
+                for(int x = i; x <= j; x++){
+
+                    sum += arr[x];
+
+                    boolean found = false;
+
+                    // Check whether arr[x] appeared earlier
+                    for(int y = i; y < x; y++){
+
+                        if(arr[x] == arr[y]){
+                            found = true;
+                            break;
+                        }
+                    }
+
+                    // New distinct element
+                    if(!found){
+                        distinct++;
+                    }
+                }
+
+                // Check if good subarray
+                if(distinct <= k){
+
+                    if(sum > max){
+                        max = sum;
+                    }
+                }
+            }
+        }
+
+        System.out.println(max);
+    }
+}
