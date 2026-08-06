@@ -1,0 +1,41 @@
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        char[]a=s.toCharArray();
+        char[]b=t.toCharArray();
+        Arrays.sort(a);
+        Arrays.sort(b);
+        return Arrays.equals(a,b);
+    }
+}
+//Anagram-same letters,same count,same fequency
+// add all the ascii values of both strs and check if it is equal then it is anagram-but it will not work for all test cases 
+//Step1-Convert str to array S1 & S2
+//Step2-sorting help to check the string as anagram - it work for all cases 
+
+Given two strings s and t, return true if t is an anagram of s, and false otherwise.
+
+ 
+
+Example 1:
+
+Input: s = "anagram", t = "nagaram"
+
+Output: true
+
+Example 2:
+
+Input: s = "rat", t = "car"
+
+Output: false
+
+ 
+
+Constraints:
+
+1 <= s.length, t.length <= 5 * 104
+s and t consist of lowercase English letters.
+ 
+
+Follow up: What if the inputs contain Unicode characters? How would you adapt your solution to such a case?
+
+ 
